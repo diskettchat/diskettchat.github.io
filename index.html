@@ -1,0 +1,158 @@
+
+
+<div id=mainchatbox>
+<center>
+<img src="https://lh3.googleusercontent.com/EsT8qdyAOnadgH0aoGUMvs0JZUy_FA6A5mV18O1HoN3dsKM9MwRR9eLMciD6gQVDE2Y6NIQ-bHJkrLaUyBBk9EHV2SZ3ri9iXZfYfhc6dHy-loZG1tkCY8C5X3_ykGFe4Fbear9zH-MBXMktgVgB_svKd1kWZ9CIQB8i-MA08UulSsZdyP8N9H4GZ3YYiwTo_kSUYQkwyMD14zvGVuJEj29MUBTuY57p_U2F3UArUtvossHvkX3ZpNVFt_-pMe4CE0gtkQozcqPxYLSpUHink3X_fFH6o8BpSlmGjrjap1C74fvUS143ctN_vGUKlVN8sU6q8EHw0nQK_k9OP4u_mkF06tthzJ0vWRhlc81pkpm9UpdfKo4ZbK4eEm7TUdcrPnxrQRhV55HAFtLjA7QykMStCQX2R2uoEvaVWGva3Ui9GFez58Bt-Jnn0Dymi5lN60RghPUv4W8zli10SfJKxzb-Qlv3280P0j2Q_7B9B1WHAq5KuELkstmUUXO2qIdhqLi-LCqQty5MbKOwOgNAGKhAsQGBHJxTXRWLc6ZssC47qv42pqOACuz5JtEuC_RsFF55p6_Gm2WEOx9fXJTmsluEVbOO1A1PQIdt0Glf2V2W036RlVANMs_6dBZpfhoJUdUJirkE1pctpYuhqIQGpzYDOXjLj9rPS5VWdP_wFN5KItQEHdI3mJw01k4OjLly7-XIYtmyfbHixnqIKAKmACx9jb4X1IDgUB19zsoFXb0jW04aGz8OVeEUMcdEYLHKgO74kuRCtLNMioyPXfR8Dpg6WfgirbzPWmV2Bm67Rxn9jAj093LvkGrMoAFEzKUWCv_wQYJFj8RWoxBlHLgF3ka8lZ8PwTbk-wKB7JZVtclDYqBMiEXErBBa4Bnd6nAjYQjGvBY3OHZpiTbOZvAC7l1EjfgFQAbEP4XLzQ=s617-no?authuser=0" width="80px">
+</center>
+<br>
+<div id=box></div>
+<div id=box2></div>
+<br>
+<center>
+<div><button onclick="setUpAccount()">Set Up Account</button><input id=input placeholder=Message /><input id=image placeholder="Image (url)" /></div>
+</center>
+</div>
+
+
+
+<a id="usernameholder">User</a>
+<a id="pfpholder">https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUyAfXfniYfSTZ7Z2HjW2COSyC8WTH3TgkGw&usqp=CAU</a>
+
+<script src=http://cdn.pubnub.com/pubnub.min.js></script>
+<script>(function(){
+
+
+
+
+
+
+
+function addMessage(text,usernametxt,pfp,image){
+  divmsg=document.createElement("div")
+  divmsg.setAttribute("class","divmsg")
+  pfpdiv=document.createElement("img")
+  pfpdiv.setAttribute("src",pfp)
+  pfpdiv.setAttribute("class","pfp")
+  
+  divmsg.append(pfpdiv)
+  
+  textplacer=document.createElement("span")
+  
+  textplacer.style="vertical-align: top;"
+  usernametxt=document.createTextNode(usernametxt)
+  
+  msg=document.createTextNode(" "+  text)
+  
+  textplacer.append(usernametxt)
+  textplacer.append(document.createElement("br"))
+  textplacer.append(msg)
+  
+  divmsg.append(textplacer)
+  
+  
+  if(image!=""){
+    textplacer.append(document.createElement("br"))
+    img=document.createElement("img")
+    img.setAttribute("src",image)
+    document.getElementById("image").value=""
+    img.setAttribute("class","imgdiv")
+    divmsg.append(img)
+  }
+  
+  
+  
+  
+  box=document.getElementById("box")
+  box.append(divmsg)
+}
+
+
+
+var pubnub = PUBNUB.init({publish_key:'pub-c-441cc626-2cc8-45d3-a3c4-4d13634ecc15',subscribe_key:'sub-c-cfa2c6eb-69c0-404a-8f01-f86d72e797a5',ssl:true});
+var box = PUBNUB.$('box'), input = PUBNUB.$('input'), nickname = PUBNUB.$('usernameholder'), pfp = PUBNUB.$('pfpholder'), theimg = PUBNUB.$('image'), channel = 'chat';
+pubnub.subscribe({
+    channel  : channel,
+    callback : function(text) {
+      const newtext = text.split("%split");
+      
+      
+      addMessage(newtext[0],newtext[1],newtext[2],newtext[3])
+      
+    }
+});
+PUBNUB.bind( 'keyup', input, function(e) {
+    (e.keyCode || e.charCode) === 13 && pubnub.publish({
+        channel : channel, message : input.value+"%split"+nickname.innerHTML+"%split"+pfp.innerHTML+"%split"+theimg.value, x : (input.value='')
+    })
+} )
+})()
+
+function setUpAccount(){
+  var newUsername=prompt("Username: ")
+  var newPFP=prompt("PFP (url): ")
+  document.getElementById("usernameholder").innerHTML=newUsername
+  document.getElementById("pfpholder").innerHTML=newPFP
+}
+
+</script>
+
+<style>
+  :root{
+    --bg-color:#ececec;
+    --box-color:#f5f5f5;
+    --border-color:#d9d9d9;
+  }
+
+  body{ font-family:monospace ; background-color:var(--bg-color)}
+
+  #box{
+    
+    width:98%;
+    height:60%;
+    outline:var(--border-color) solid 10px;
+    background-color:var(--box-color);
+    padding:5px;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:none;
+    border-radius:20px;
+  }
+  #box2{
+    
+    width:100%;
+    height:70%;
+    padding:5px;
+  }
+  #mainchatbox{
+    text-align:left;
+    overflow:hidden;
+  }
+  .divmsg{
+    
+    width:97.8%;
+    background-color:white;
+    border-radius:20px;
+    padding:5px;
+    margin:10px;
+  }
+  .pfp{
+    width:50px;
+    height:50px;
+    border-radius:25px;
+  }
+  
+  #usernameholder{
+    display:block;
+    color:var(--bg-color)
+  }
+  #pfpholder{
+    display:block;
+    color:var(--bg-color)
+  }
+  
+  .imgdiv{
+    
+    height:100px;
+    border-radius:10px;
+  }
+</style>
