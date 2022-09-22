@@ -68,7 +68,7 @@ function addMessage(text,usernametxt,pfp,image){
 
 
 
-var pubnub = PUBNUB.init({publish_key:'pub-c-441cc626-2cc8-45d3-a3c4-4d13634ecc15',subscribe_key:'sub-c-cfa2c6eb-69c0-404a-8f01-f86d72e797a5',ssl:true});
+var pubnub = PUBNUB.init({publish_key:'pub-c-fe0f5f9b-3f16-421b-aa91-be34215ff853',subscribe_key:'sub-c-e07be037-640f-4486-af17-23e8e3b16113',ssl:true});
 var box = PUBNUB.$('box'), input = PUBNUB.$('input'), nickname = PUBNUB.$('usernameholder'), pfp = PUBNUB.$('pfpholder'), theimg = PUBNUB.$('image'), channel = 'chat';
 pubnub.subscribe({
     channel  : channel,
