@@ -72,7 +72,7 @@ function addMessage(text,usernametxt,pfp,image){
   
   
   box=document.getElementById("box")
-  box.pappend(divmsg)
+  box.append(divmsg)
 }
 
 
@@ -103,9 +103,11 @@ function setUpAccount(){
   document.getElementById("pfpholder").innerHTML=newPFP
 }
 
+function bottom{
+  document.body.scrollTop = 9999;
+}
 
-  
-
+setInterval("bottom", 200)
   
 </script>
 
