@@ -106,11 +106,11 @@ function setUpAccount(){
 
   
 function bottom() {
-    document.getElementById( 'box' ).scrollIntoView();
-    setInterval("bottom()", 500);
+    window.scrollTo(0, document.getElementById("box").style.height);
+    
 };
   
-  
+setInterval("bottom()", 500);
 
 bottom();
   
