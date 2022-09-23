@@ -107,6 +107,8 @@ function setUpAccount(){
   var newPFP=prompt("PFP (url): ")
   document.getElementById("usernameholder").innerHTML=newUsername
   document.getElementById("pfpholder").innerHTML=newPFP
+  localStorage.setItem("username",newUsername);
+  localStorage.setItem("pfp",newPFP);
 }
 
 function bottom() {
