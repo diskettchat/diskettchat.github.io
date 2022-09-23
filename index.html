@@ -103,9 +103,11 @@ function setUpAccount(){
   document.getElementById("pfpholder").innerHTML=newPFP
 }
 
+
+  
 function bottom() {
     document.getElementById( 'box' ).scrollIntoView();
-    window.setTimeout( function () { top(); }, 2000 );
+    window.setTimeout( function () { bottom(); }, 2000 );
 };
 
 bottom();
