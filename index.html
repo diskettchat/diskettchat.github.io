@@ -103,16 +103,11 @@ function setUpAccount(){
   document.getElementById("pfpholder").innerHTML=newPFP
 }
 
-function bottom() {
-    document.getElementById( 'box' ).scrollIntoView();
-    window.setTimeout( function () { top(); }, 2000 );
-};
-
-  
-while(true){
-  
-  bottom();
+function pageScroll() {
+    window.scrollBy(0,1);
+    scrolldelay = setTimeout(pageScroll,10);
 }
+pageScroll();
   
 </script>
 
