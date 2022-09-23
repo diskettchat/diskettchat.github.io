@@ -38,9 +38,9 @@ if (document.getElementById("usernameholder").innerHTML=="User"){
   document.getElementById("pfpholder").innerHTML=pfp
 }else{
   var usr=localStorage.getItem("username");
-  var pfp=localStorage.getItem("username");
-  document.getElementById("usernameholder").innerHTML=usr
-  document.getElementById("pfpholder").innerHTML=pfp
+  var pfp=localStorage.getItem("pfp");
+  document.getElementById("usernameholder").innerHTML=localStorage.getItem("username");
+  document.getElementById("pfpholder").innerHTML=localStorage.getItem("pfp");
 }
 
 
@@ -109,10 +109,13 @@ PUBNUB.bind( 'keyup', input, function(e) {
 function setUpAccount(){
   var newUsername=prompt("Username: ")
   var newPFP=prompt("PFP (url): ")
-  document.getElementById("usernameholder").innerHTML=newUsername
-  document.getElementById("pfpholder").innerHTML=newPFP
-  localStorage.setItem("username",newUsername);
+  localStorage.setItem("username", newUsername);
   localStorage.setItem("pfp",newPFP);
+  var usr=localStorage.getItem("username");
+  var pfp=localStorage.getItem("pfp");
+  document.getElementById("usernameholder").innerHTML=localStorage.getItem("username");
+  document.getElementById("pfpholder").innerHTML=localStorage.getItem("pfp");
+  
 }
 
 function bottom() {
