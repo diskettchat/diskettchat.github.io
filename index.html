@@ -18,7 +18,7 @@
 <div id=box2></div>
 <br>
 <center>
-<div><button onclick="setUpAccount()">Set Up Account</button><input id=input placeholder=Message /><input id=image placeholder="Image (url)" /></div>
+<div><button onclick="setUpAccount()">Set Up Account</button><input id=input placeholder=Message /><input id=image placeholder="Image (url)" /> Disable Autoscroll? <input id="disableautoscroll" type="checkbox"></input></div>
 </center>
 </div>
 
@@ -104,8 +104,10 @@ function setUpAccount(){
 }
 
 function bottom() {
-    document.getElementById('box').scrollTo(0, 9999);
-    
+  disableauto=document.getElementById("disableautoscroll")
+  if(disableauto.checked==0){
+  document.getElementById('box').scrollTo(0, 9999);
+  }
 };
   
 setInterval("bottom()", 500);
