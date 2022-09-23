@@ -107,8 +107,10 @@ function setUpAccount(){
   
 function bottom() {
     document.getElementById( 'box' ).scrollIntoView();
-    window.setTimeout( function () { bottom(); }, 2000 );
+    setInterval("bottom()", 500);
 };
+  
+  
 
 bottom();
   
