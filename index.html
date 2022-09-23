@@ -31,7 +31,13 @@
 <script>(function(){
 
 
-
+if (document.getElementById("usernameholder").innerHTML=="User"){
+  localStorage.setItem("username", "User");
+  localStorage.setItem("pfp", "new user.png");
+}else{
+  document.getElementById("usernameholder").innerHTML=localStorage.getItem("username");
+  document.getElementById("pfpholder").innerHTML=localStorage.getItem("pfp");
+}
 
 
 
