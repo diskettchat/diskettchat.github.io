@@ -106,8 +106,7 @@ function setUpAccount(){
 
   
 function bottom() {
-    window.scrollTo(0, document.getElementById("box").style.height);
-    
+    document.getElementById("box").scrollTop = 1000;
 };
   
 setInterval("bottom()", 500);
