@@ -32,11 +32,15 @@
 
 
 if (document.getElementById("usernameholder").innerHTML=="User"){
-  localStorage.setItem("username", "User");
-  localStorage.setItem("pfp", "new user.png");
+  var usr=localStorage.setItem("username", "User");
+  var pfp=localStorage.setItem("username", "new pfp.png");
+  document.getElementById("usernameholder").innerHTML=usr
+  document.getElementById("pfpholder").innerHTML=pfp
 }else{
-  document.getElementById("usernameholder").innerHTML=localStorage.getItem("username");
-  document.getElementById("pfpholder").innerHTML=localStorage.getItem("pfp");
+  var usr=localStorage.getItem("username");
+  var pfp=localStorage.getItem("username");
+  document.getElementById("usernameholder").innerHTML=usr
+  document.getElementById("pfpholder").innerHTML=pfp
 }
 
 
